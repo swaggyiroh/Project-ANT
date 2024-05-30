@@ -7,6 +7,5 @@ Ant Terrarium Observer..
 ## By
 
 - [@Kuelpi](https://www.github.com/Kuelpi)
-- [@swaggyiroh](https://www.github.com/swaggyiroh)
 - [@Nilsibus](https://github.com/Nilsibus)
-
+- [@swaggyiroh](https://www.github.com/swaggyiroh)
