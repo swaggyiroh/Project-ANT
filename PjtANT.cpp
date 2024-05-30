@@ -1,3 +1,5 @@
+// Code only to try copping camera pictures and color recognition
+
 #include <opencv2/opencv.hpp>
 
 int main() {
