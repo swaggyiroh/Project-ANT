@@ -10,7 +10,7 @@ int main() {
     cv::Mat frame;
     camera >> frame; // Capture a frame
 
-    // Crop the image (define your own ROI coordinates)
+    // Crop the image 
     cv::Rect roi(100, 100, 200, 200);
     cv::Mat cropped = frame(roi);
 
