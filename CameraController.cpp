@@ -1,11 +1,13 @@
-// Code only to try copping camera pictures and color recognition
+// Code only to try cropping camera pictures and color recognition
+
+#include "CameraController.h"
 
 #include <opencv2/opencv.hpp>
 
-int main() {
-    cv::VideoCapture camera(0); // Open the default camera (usually the Raspberry Pi camera)
-    if (!camera.isOpened()) {
-        std::cerr << "Error: Camera not found!" << std::endl;
+int CameraController::getLevel() {
+    cv::VideoCapture camera(0);
+    if(!camera.isOpend()){
+        std::cerr << "[ERROR] -> No Camera found!" << std::endl;
         return -1;
     }
 
@@ -37,4 +39,6 @@ int main() {
     cv::waitKey(0);
 
     return 0;
+
 }
+
