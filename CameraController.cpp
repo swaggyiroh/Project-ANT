@@ -6,7 +6,8 @@
 
 int CameraController::getLevel() {
     cv::VideoCapture camera(0);
-    if(!camera.isOpend()){
+
+    if(!camera.isOpened()){
         std::cerr << "[ERROR] -> No Camera found!" << std::endl;
         return -1;
     }

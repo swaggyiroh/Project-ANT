@@ -7,7 +7,7 @@
 
 class CameraController {
 public:
-    int getLevel();
+    static int getLevel();
 };
 
 #endif // CAMERA_CONTROLLER_H
