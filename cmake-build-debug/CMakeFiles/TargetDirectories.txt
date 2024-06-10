@@ -1,3 +1,0 @@
-/home/dominik/Desktop/ant/Project-ANT/cmake-build-debug/CMakeFiles/Project_ANT.dir
-/home/dominik/Desktop/ant/Project-ANT/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/dominik/Desktop/ant/Project-ANT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
