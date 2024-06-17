@@ -1,13 +1,16 @@
-// CameraController.h
+//
+// Created by dominik on 17.06.24.
+//
 
-#ifndef CAMERA_CONTROLLER_H
-#define CAMERA_CONTROLLER_H
+#ifndef PROJECT_ANT_CAMERACONTROLLER_H
+#define PROJECT_ANT_CAMERACONTROLLER_H
 
 #include <opencv2/opencv.hpp>
 
 class CameraController {
 public:
-    static int getLevel();
+    int getlevel();
 };
 
-#endif // CAMERA_CONTROLLER_H
+
+#endif //PROJECT_ANT_CAMERACONTROLLER_H

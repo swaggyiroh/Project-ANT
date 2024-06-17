@@ -1,45 +1,95 @@
-// Code only to try cropping camera pictures and color recognition
-
 #include "CameraController.h"
-
 #include <opencv2/opencv.hpp>
+#include <iostream>
 
-int CameraController::getLevel() {
+int CameraController::getlevel() {
+    // Try to open the camera with the default backend
     cv::VideoCapture camera(0);
 
-    if(!camera.isOpened()){
-        std::cerr << "[ERROR] -> No Camera found!" << std::endl;
-        return -1;
+    if (!camera.isOpened()) {
+        std::cerr << "[ERROR] -> No Camera found with default backend!" << std::endl;
+
+        // Try opening the camera with a different backend, e.g., V4L2 (Video4Linux2)
+        camera.open(0, cv::CAP_V4L2);
+        if (!camera.isOpened()) {
+            std::cerr << "[ERROR] -> No Camera found with V4L2 backend either!" << std::endl;
+            return -1;
+        }
     }
 
     cv::Mat frame;
-    camera >> frame; // Capture a frame
+    camera.read(frame); // Capture a frame
 
-    // Crop the image 
-    cv::Rect roi(100, 100, 200, 200);
-    cv::Mat cropped = frame(roi);
+    // Check if the frame is empty
+    if (frame.empty()) {
+        std::cerr << "[ERROR] -> Captured frame is empty!" << std::endl;
+        return -1;
+    }
+
+    // Print frame dimensions
+    std::cout << "Captured frame dimensions: " << frame.cols << "x" << frame.rows << std::endl;
 
     // Convert to HSV
     cv::Mat hsv;
-    cv::cvtColor(cropped, hsv, cv::COLOR_BGR2HSV);
+    cv::cvtColor(frame, hsv, cv::COLOR_BGR2HSV);
 
-    // Define the color range (e.g., green)
+    // Enhance contrast in the V channel (Histogram Equalization)
+    std::vector<cv::Mat> channels;
+    cv::split(hsv, channels);
+    cv::equalizeHist(channels[2], channels[2]);
+    cv::merge(channels, hsv);
+
+    // Define the color ranges
+    // Example ranges (you should adjust these based on your specific lighting conditions)
     cv::Scalar lower_green(35, 50, 50);
     cv::Scalar upper_green(85, 255, 255);
 
-    // Create a mask for green pixels
-    cv::Mat mask;
-    cv::inRange(hsv, lower_green, upper_green, mask);
+    cv::Scalar lower_red1(0, 50, 50);
+    cv::Scalar upper_red1(10, 255, 255);
+    cv::Scalar lower_red2(170, 50, 50);
+    cv::Scalar upper_red2(180, 255, 255);
 
-    // Apply the mask to the cropped image
-    cv::Mat result;
-    cropped.copyTo(result, mask);
+    cv::Scalar lower_blue(100, 50, 50);
+    cv::Scalar upper_blue(130, 255, 255);
 
-    // Display the result
-    cv::imshow("Color Portion", result);
-    cv::waitKey(0);
+    // Create masks for each color
+    cv::Mat mask_green, mask_red1, mask_red2, mask_blue;
+    cv::inRange(hsv, lower_green, upper_green, mask_green);
+    cv::inRange(hsv, lower_red1, upper_red1, mask_red1);
+    cv::inRange(hsv, lower_red2, upper_red2, mask_red2);
+    cv::inRange(hsv, lower_blue, upper_blue, mask_blue);
+
+    // Combine masks for red (due to hue wrap-around)
+    cv::Mat mask_red;
+    cv::bitwise_or(mask_red1, mask_red2, mask_red);
+
+    // Count pixels for each color
+    int total_pixels = frame.cols * frame.rows;
+    int green_pixels = cv::countNonZero(mask_green);
+    int red_pixels = cv::countNonZero(mask_red);
+    int blue_pixels = cv::countNonZero(mask_blue);
+
+    // Calculate percentages
+    float green_percentage = (static_cast<float>(green_pixels) / total_pixels) * 100.0;
+    float red_percentage = (static_cast<float>(red_pixels) / total_pixels) * 100.0;
+    float blue_percentage = (static_cast<float>(blue_pixels) / total_pixels) * 100.0;
+
+    // Print percentages
+    std::cout << "Green pixels percentage: " << green_percentage << "%" << std::endl;
+    std::cout << "Red pixels percentage: " << red_percentage << "%" << std::endl;
+    std::cout << "Blue pixels percentage: " << blue_percentage << "%" << std::endl;
+
+    // Display the results
+    cv::imshow("Green Portion", mask_green);
+    cv::imshow("Red Portion", mask_red);
+    cv::imshow("Blue Portion", mask_blue);
+
+    int key = cv::waitKey(0);
+
+    if (key == 27) {
+        camera.release();
+        cv::destroyAllWindows();
+    }
 
     return 0;
-
 }
-
