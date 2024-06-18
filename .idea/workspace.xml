@@ -20,7 +20,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c87cd6a-06da-4693-88c0-7ebea92ac60d" name="Changes" comment="" />
+    <list default="true" id="6c87cd6a-06da-4693-88c0-7ebea92ac60d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,8 +71,8 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="C/C++ File.Main.cpp">
-    <configuration name="Project_ANT" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project_ANT" TARGET_NAME="Project_ANT" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project_ANT" RUN_TARGET_NAME="Project_ANT">
+  <component name="RunManager" selected="CMake Application.Project_ANT">
+    <configuration name="Project_ANT" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -86,6 +89,11 @@
         <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="C/C++ File.CameraController.cpp" />
+      <item itemvalue="C/C++ File.Main.cpp" />
+      <item itemvalue="CMake Application.Project_ANT" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="C/C++ File.Main.cpp" />
@@ -106,6 +114,7 @@
       <workItem from="1718613024565" duration="1431000" />
       <workItem from="1718615621434" duration="2489000" />
       <workItem from="1718619714635" duration="914000" />
+      <workItem from="1718694686472" duration="61000" />
     </task>
     <servers />
   </component>
