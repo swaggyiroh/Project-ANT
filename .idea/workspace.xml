@@ -20,12 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c87cd6a-06da-4693-88c0-7ebea92ac60d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CameraController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/CameraController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CameraController.h" beforeDir="false" afterPath="$PROJECT_DIR$/CameraController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.cpp" beforeDir="false" />
-    </list>
+    <list default="true" id="6c87cd6a-06da-4693-88c0-7ebea92ac60d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +105,7 @@
       <workItem from="1717672915607" duration="1158000" />
       <workItem from="1718613024565" duration="1431000" />
       <workItem from="1718615621434" duration="2489000" />
-      <workItem from="1718619714635" duration="578000" />
+      <workItem from="1718619714635" duration="914000" />
     </task>
     <servers />
   </component>
