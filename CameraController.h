@@ -1,5 +1,5 @@
 //
-// Created by dominik on 17.06.24.
+// Created by dominik 
 //
 
 #ifndef PROJECT_ANT_CAMERACONTROLLER_H

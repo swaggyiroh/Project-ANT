@@ -39,27 +39,26 @@ int CameraController::getlevel() {
     cv::equalizeHist(channels[2], channels[2]);
     cv::merge(channels, hsv);
 
-    // Define the color ranges
-    // Example ranges (you should adjust these based on your specific lighting conditions)
+    // Define the color ranges for green 
     cv::Scalar lower_green(35, 50, 50);
     cv::Scalar upper_green(85, 255, 255);
-
+    // red 
     cv::Scalar lower_red1(0, 50, 50);
     cv::Scalar upper_red1(10, 255, 255);
     cv::Scalar lower_red2(170, 50, 50);
     cv::Scalar upper_red2(180, 255, 255);
-
+    // and blue
     cv::Scalar lower_blue(100, 50, 50);
     cv::Scalar upper_blue(130, 255, 255);
 
-    // Create masks for each color
+    // masks for each color
     cv::Mat mask_green, mask_red1, mask_red2, mask_blue;
     cv::inRange(hsv, lower_green, upper_green, mask_green);
     cv::inRange(hsv, lower_red1, upper_red1, mask_red1);
     cv::inRange(hsv, lower_red2, upper_red2, mask_red2);
     cv::inRange(hsv, lower_blue, upper_blue, mask_blue);
 
-    // Combine masks for red (due to hue wrap-around)
+    // Combine masks for red 
     cv::Mat mask_red;
     cv::bitwise_or(mask_red1, mask_red2, mask_red);
 
@@ -79,17 +78,10 @@ int CameraController::getlevel() {
     std::cout << "Red pixels percentage: " << red_percentage << "%" << std::endl;
     std::cout << "Blue pixels percentage: " << blue_percentage << "%" << std::endl;
 
-    // Display the results
-    cv::imshow("Green Portion", mask_green);
-    cv::imshow("Red Portion", mask_red);
-    cv::imshow("Blue Portion", mask_blue);
 
-    int key = cv::waitKey(0);
 
-    if (key == 27) {
-        camera.release();
-        cv::destroyAllWindows();
-    }
+    camera.release();
+
 
     return 0;
 }

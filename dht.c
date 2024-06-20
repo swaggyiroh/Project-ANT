@@ -8,6 +8,7 @@
 #include <stdint.h>
 #define MAX_TIMINGS	85
 #define DHT_PIN		3	/* GPIO-22 */
+
 int data[5] = { 0, 0, 0, 0, 0 };
 void read_dht_data()
 {
@@ -73,16 +74,4 @@ void read_dht_data()
 	}else  {
 		printf( "Data not good, skip\n" );
 	}
-}
-int main( void )
-{
-	printf( "Raspberry Pi DHT11/DHT22 temperature/humidity test\n" );
-	if ( wiringPiSetup() == -1 )
-		exit( 1 );
-	while ( 1 )
-	{
-		read_dht_data();
-		delay( 2000 ); /* wait 2 seconds before next read */
-	}
-	return(0);
 }
