@@ -11,13 +11,9 @@ int main() {
     CameraController controller;
 
 
-    std::cout<<controller.getlevel();<<std::endl;
+    std::cout<<controller.getlevel()<<std::endl;
     
-	if ( wiringPiSetup() == -1 )
-		std::cout<<" error in wiringPiSetup"<<std::endl;
-	
-
-	read_dht_data();
+    read_dht_data();
 
     
     return 0;
