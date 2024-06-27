@@ -1,20 +1,25 @@
 //
-// Created by dominik 
+// Created by dominik
 //
 
 #include "CameraController.h"
-#include "dht.h"
+
+#include "DHT22.h"
 
 #include <iostream>
 
-int main() {
+int main()
+{
     CameraController controller;
+    TDHT22 *MySensor = new TDHT22(DHT_PIN);
 
+    MySensor->Fetch();
+    std::cout << "Temp : " << MySensor->Temp << " °C  Humidity : " << MySensor->Hum << " %" << std::endl;
+    std::cout << controller.getlevel() << std::endl;
 
-    std::cout<<controller.getlevel()<<std::endl;
-    
-    read_dht_data();
+    delete MySensor;
 
-    
+    delete controller;
+
     return 0;
 }
