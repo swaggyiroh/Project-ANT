@@ -3,27 +3,28 @@
 #include <iostream>
 
 int CameraController::getlevel() {
-    // Try to open the camera with the default backend
-    cv::VideoCapture camera(0);
+    // Try to open the camera with the Video4Linux2 backend
+    cv::VideoCapture camera(0, cv::CAP_V4L2);
 
     if (!camera.isOpened()) {
-        std::cerr << "[ERROR] -> No Camera found with default backend!" << std::endl;
-
-        // Try opening the camera with a different backend, e.g., V4L2 (Video4Linux2)
-        camera.open(0, cv::CAP_V4L2);
-        if (!camera.isOpened()) {
-            std::cerr << "[ERROR] -> No Camera found with V4L2 backend either!" << std::endl;
-            return -1;
-        }
+        std::cerr << "[ERROR] -> No Camera found with V4L2 backend!" << std::endl;
+        return -42;
     }
 
+    // Set the camera resolution to a lower value to save memory
+    camera.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    camera.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+
     cv::Mat frame;
-    camera.read(frame); // Capture a frame
+    if (!camera.read(frame)) { // Capture a frame and check if successful
+        std::cerr << "[ERROR] -> Failed to capture frame!" << std::endl;
+        return -1;
+    }
 
     // Check if the frame is empty
     if (frame.empty()) {
         std::cerr << "[ERROR] -> Captured frame is empty!" << std::endl;
-        return -1;
+        return -2;
     }
 
     // Print frame dimensions
@@ -39,28 +40,26 @@ int CameraController::getlevel() {
     cv::equalizeHist(channels[2], channels[2]);
     cv::merge(channels, hsv);
 
-    // Define the color ranges for green 
+    // Define the color ranges for green, red, and blue
     cv::Scalar lower_green(35, 50, 50);
     cv::Scalar upper_green(85, 255, 255);
-    // red 
     cv::Scalar lower_red1(0, 50, 50);
     cv::Scalar upper_red1(10, 255, 255);
     cv::Scalar lower_red2(170, 50, 50);
     cv::Scalar upper_red2(180, 255, 255);
-    // and blue
     cv::Scalar lower_blue(100, 50, 50);
     cv::Scalar upper_blue(130, 255, 255);
 
-    // masks for each color
-    cv::Mat mask_green, mask_red1, mask_red2, mask_blue;
+    // Masks for each color
+    cv::Mat mask_green, mask_red1, mask_red2, mask_red, mask_blue;
     cv::inRange(hsv, lower_green, upper_green, mask_green);
     cv::inRange(hsv, lower_red1, upper_red1, mask_red1);
     cv::inRange(hsv, lower_red2, upper_red2, mask_red2);
     cv::inRange(hsv, lower_blue, upper_blue, mask_blue);
 
-    // Combine masks for red 
-    cv::Mat mask_red;
-    cv::bitwise_or(mask_red1, mask_red2, mask_red);
+    // Combine masks for red
+    cv::bitwise_or(mask_red1, mask_red2, mask_red1);
+    mask_red = mask_red1;
 
     // Count pixels for each color
     int total_pixels = frame.cols * frame.rows;
@@ -78,10 +77,9 @@ int CameraController::getlevel() {
     std::cout << "Red pixels percentage: " << red_percentage << "%" << std::endl;
     std::cout << "Blue pixels percentage: " << blue_percentage << "%" << std::endl;
 
-
-
+    // Release the camera
     camera.release();
-
 
     return 0;
 }
+
