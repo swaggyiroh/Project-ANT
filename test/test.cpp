@@ -1,29 +1,31 @@
-// Opencv needs to be installed on your Raspberry Pi
-#include <opencv2/opencv.hpp>
+/**
+*/
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <raspicam/raspicam.h>
 using namespace std;
-using namespace cv;
-
-int main() {
-    VideoCapture cap(0); // if you only have 1 camera connected.
-    if (!cap.isOpened()) {
-        cout << "Cannot open camera\n";
-        return -1;
-    }
-
-    Mat frame;
-    while (true) {
-        bool ret = cap.read(frame); // or cap >> frame;
-        if (!ret) {
-            cout << "Error. Fail to receive frame.\n";
-            break;
-        }
-        ......
-        // process frame
-        ......
-        if (waitKey(1) == 'q') {
-            break;
-        }
-    }
-
-    return 0;
+ 
+int main ( int argc,char **argv ) {
+	raspicam::RaspiCam Camera; //Camera object
+	//Open camera 
+	cout<<"Opening Camera..."<<endl;
+	if ( !Camera.open()) {cerr<<"Error opening camera"<<endl;return -1;}
+	//wait a while until camera stabilizes
+	cout<<"Sleeping for 3 secs"<<endl;
+	sleep(3);
+	//capture
+	Camera.grab();
+	//allocate memory
+	unsigned char *data=new unsigned char[  Camera.getImageTypeSize ( raspicam::RASPICAM_FORMAT_RGB )];
+	//extract the image in rgb format
+	Camera.retrieve ( data,raspicam::RASPICAM_FORMAT_RGB );//get camera image
+	//save
+	std::ofstream outFile ( "raspicam_image.ppm",std::ios::binary );
+	outFile<<"P6\n"<<Camera.getWidth() <<" "<<Camera.getHeight() <<" 255\n";
+	outFile.write ( ( char* ) data, Camera.getImageTypeSize ( raspicam::RASPICAM_FORMAT_RGB ) );
+	cout<<"Image saved at raspicam_image.ppm"<<endl;
+	//free resrources    
+	delete data;
+	return 0;
 }
