@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#define DHT_PIN 26
+#define DHT_PIN 26     /* GPIO-22 */
 
 int main()
 {
