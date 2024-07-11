@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#define DHT_PIN 26     /* GPIO-22 */
+#define DHT_PIN 26     // WiringPi 26 = BCM 12 = connector pin 32
 
 int main()
 {
