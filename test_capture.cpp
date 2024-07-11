@@ -16,10 +16,9 @@ int main() {
     camera.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M', 'J', 'P', 'G'));
 
     cv::Mat frame;
-    if (!camera.read(frame)) { // Capture a frame and check if successful
-        std::cerr << "[ERROR] -> Failed to capture frame!" << std::endl;
-        return -1;
-    }
+    camera.read(frame);
+    cv::imshow("frame",frame);
+
 
     // Check if the frame is empty
     if (frame.empty()) {
