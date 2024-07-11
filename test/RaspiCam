@@ -1,4 +1,25 @@
 https://github.com/cedricve/raspicam
 
-
 sudo apt-get install cmake libjpeg8-dev wiringpi libmmal-dev libmmal-core-dev libmmal-util-dev
+
+
+ngpi libmmal-dev libmmal-core-dev libmmal-util-dev
+Paketlisten werden gelesen… Fertig
+Abhängigkeitsbaum wird aufgebaut… Fertig
+Statusinformationen werden eingelesen… Fertig
+Paket libjpeg8-dev ist nicht verfügbar, wird aber von einem anderen Paket
+referenziert. Das kann heißen, dass das Paket fehlt, dass es abgelöst
+wurde oder nur aus einer anderen Quelle verfügbar ist.
+Doch die folgenden Pakete ersetzen es:
+  libjpeg62-turbo-dev:armhf libjpeg62-turbo-dev
+
+Paket wiringpi:armhf ist nicht verfügbar, wird aber von einem anderen Paket
+referenziert. Das kann heißen, dass das Paket fehlt, dass es abgelöst
+wurde oder nur aus einer anderen Quelle verfügbar ist.
+
+E: Für Paket »libjpeg8-dev« existiert kein Installationskandidat.
+E: Für Paket »wiringpi:armhf« existiert kein Installationskandidat.
+E: Paket libmmal-dev kann nicht gefunden werden.
+E: Paket libmmal-core-dev kann nicht gefunden werden.
+E: Paket libmmal-util-dev kann nicht gefunden werden.
+
