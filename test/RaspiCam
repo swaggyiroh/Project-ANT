@@ -1,1 +1,4 @@
 https://github.com/cedricve/raspicam
+
+
+sudo apt-get install cmake libjpeg8-dev wiringpi libmmal-dev libmmal-core-dev libmmal-util-dev
