@@ -1,2 +1,0 @@
-## create good directory structure, 
-## add script excecution to cpp " process_image.cpp " 

@@ -4,6 +4,13 @@
 using namespace std;
 using namespace cv;
 
+
+/*
+    Function to Process image,
+    get R,G,B portion Values
+    and return FillLevel ob Feeding Bowl in (int) %
+*/
+
 int processCapturedImage(const std::string& filename) {
     // Load the image from file (replace "image.jpg" with your image file path)
     Mat image = imread(filename);
@@ -45,17 +52,12 @@ int processCapturedImage(const std::string& filename) {
     cout << "Green Percentage: " << greenPercentage << "%" << endl;
     cout << "Blue Percentage: " << bluePercentage << "%" << endl;
 
-    return 0;
+
+    int value = 0;
+
+    // TODO: Berechnung des Futterfuellstands anhand der R;G;B Prozente
+
+
+
+    return value;
 }
-
-int main() {
-
-    system("./capture_image.sh");
-    std::string filename = "image.jpg";
-
-    // Process the captured image
-    int result = processCapturedImage(filename);
-
-    return result;
-}
-
