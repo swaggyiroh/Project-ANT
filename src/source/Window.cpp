@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "Window.h"
 #include <QVBoxLayout>
 #include <QDebug>
 
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
     // Load the image
-    QPixmap originalPixmap("image.jpg");
+    QPixmap originalPixmap("assets/image.jpg");
     
     // Scale the image to 100x100 pixels
     QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Set the layout for the central widget
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
+
+
+    
 }
 
 MainWindow::~MainWindow() {

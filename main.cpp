@@ -1,55 +1,56 @@
 #include <QApplication>
-#include "src/source/mainwindow.h"
-#include "src/source/process_image.h"
+#include "src/source/Window.h"
+#include "src/source/ImageProcessing.h"
 #include "src/source/DHT22.h"
+#include <iostream>
+
 using namespace std;
 
 #define DHT_PIN     26
 
-int main() {
-    process_image img;
-    TDHT22 *Sensor = new TDHT22(DHT_PIN);
+int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
     MainWindow app;
     app.showFullScreen();
 
-    Sensor->Init();
-    
-    bool prcim = true;
+    TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
+    Sensor->Init(); // Initialize the DHT22 sensor
 
-    while(1){
-        if(prcim){
-            system("./src/script/capture_image.sh");
-            string image = "assets/image.jpg";
-            app.setPercentage(img.processCapturedImage(image)+"");     
+    ImageProcessing imgProcessor; // Create an instance of ImageProcessing
+
+    bool processImage = true; // Boolean to determine when to process image
+
+
+        if (processImage) {
+            system("./src/script/capture_image.sh"); // Capture an image
+            string image = "assets/image.jpg"; // Image file path
+            int fillLevel = imgProcessor.processCapturedImage(image); // Process the captured image
+            app.setPercentage(QString::fromStdString(to_string(fillLevel))); // Update GUI with processed image result
         }
-        // Turning value, so it only fetches the image every secound time.
-        prcim = !prcim;
+        processImage = !processImage; // Toggle processImage flag
 
-        // Fetching Sensor Data;
+        // Fetch Sensor Data
         Sensor->Fetch();
         
         int temp = Sensor->Temp;
         int hum = Sensor->Hum;
-        // sometimes Fetching the Sensor return 0°C and 0% then refetch,
-        while(tmp == 0 || hum == 0){
-            int temp = Sensor->Temp;
-            int hum = Sensor->Hum;
+
+        // Ensure valid sensor data
+        while (temp == 0 || hum == 0) {
+            Sensor->Fetch();
+            temp = Sensor->Temp;
+            hum = Sensor->Hum;
         }
-        // place values into app window
-        app.setTemperature(temp+"");
-        app.setHumidity(hum+"");
-        delay(10000);
-    }
 
+        // Update GUI with sensor data
+        app.setTemperature(QString::fromStdString(to_string(temp)));
+        app.setHumidity(QString::fromStdString(to_string(hum)));
 
+        //delay(10000); // Delay for 10 seconds
+    
 
+    delete Sensor; // Clean up allocated memory for DHT22 sensor
 
-    // Example of updating values
-    w.setPercentage("75%");
-    w.setTemperature("30");
-    w.setHumidity("80");
-
-    return a.exec();
+    return a.exec(); // Execute the Qt application event loop
 }

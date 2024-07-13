@@ -1,18 +1,17 @@
-#include <opencv2/opencv.hpp>
-#include <iostream>
+#include "ImageProcessing.h"
 
-using namespace std;
 using namespace cv;
+using namespace std;
 
+ImageProcessing::ImageProcessing() {
+    // Constructor implementation if needed
+}
 
-/*
-    Function to Process image,
-    get R,G,B portion Values
-    and return FillLevel ob Feeding Bowl in (int) %
-*/
+ImageProcessing::~ImageProcessing() {
+    // Destructor implementation if needed
+}
 
-int processCapturedImage(const std::string& filename) {
-    // Load the image from file (replace "image.jpg" with your image file path)
+int ImageProcessing::processCapturedImage(const std::string& filename) {
     Mat image = imread(filename);
 
     if (image.empty()) {
@@ -52,12 +51,9 @@ int processCapturedImage(const std::string& filename) {
     cout << "Green Percentage: " << greenPercentage << "%" << endl;
     cout << "Blue Percentage: " << bluePercentage << "%" << endl;
 
-
     int value = 0;
 
-    // TODO: Berechnung des Futterfuellstands anhand der R;G;B Prozente
-
-
+    // TODO: Further processing based on RGB percentages
 
     return value;
 }
