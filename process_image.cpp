@@ -1,71 +1,56 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
+using namespace std;
+using namespace cv;
+
 int processCapturedImage(const std::string& filename) {
-    // Read the captured image
-    cv::Mat frame = cv::imread(filename);
-    
-    if (frame.empty()) {
-        std::cerr << "[ERROR] -> Failed to read captured image: " << filename << std::endl;
+    // Load the image from file (replace "image.jpg" with your image file path)
+    Mat image = imread(filename);
+
+    if (image.empty()) {
+        cout << "Could not open or find the image" << endl;
         return -1;
     }
 
-    // Print frame dimensions
-    std::cout << "Captured frame dimensions: " << frame.cols << "x" << frame.rows << std::endl;
+    // Define the range of each color in RGB
+    Scalar red_lower(255, 0, 0);
+    Scalar red_upper(255, 100, 100);
 
-    // Convert to HSV
-    cv::Mat hsv;
-    cv::cvtColor(frame, hsv, cv::COLOR_BGR2HSV);
+    Scalar green_lower(153, 255, 0);
+    Scalar green_upper(0, 255, 145);
 
-    // Enhance contrast in the V channel (Histogram Equalization)
-    std::vector<cv::Mat> channels;
-    cv::split(hsv, channels);
-    cv::equalizeHist(channels[2], channels[2]);
-    cv::merge(channels, hsv);
+    Scalar blue_lower(0, 166, 255);
+    Scalar blue_upper(38, 0, 255);
 
-    // Define the color ranges for green, red, and blue
-    cv::Scalar lower_green(35, 50, 50);
-    cv::Scalar upper_green(85, 255, 255);
-    cv::Scalar lower_red1(0, 50, 50);
-    cv::Scalar upper_red1(10, 255, 255);
-    cv::Scalar lower_red2(170, 50, 50);
-    cv::Scalar upper_red2(180, 255, 255);
-    cv::Scalar lower_blue(100, 50, 50);
-    cv::Scalar upper_blue(130, 255, 255);
+    // Create masks for each color in RGB
+    Mat red_mask, green_mask, blue_mask;
+    inRange(image, red_lower, red_upper, red_mask);
+    inRange(image, green_lower, green_upper, green_mask);
+    inRange(image, blue_lower, blue_upper, blue_mask);
 
-    // Masks for each color
-    cv::Mat mask_green, mask_red1, mask_red2, mask_red, mask_blue;
-    cv::inRange(hsv, lower_green, upper_green, mask_green);
-    cv::inRange(hsv, lower_red1, upper_red1, mask_red1);
-    cv::inRange(hsv, lower_red2, upper_red2, mask_red2);
-    cv::inRange(hsv, lower_blue, upper_blue, mask_blue);
-
-    // Combine masks for red
-    cv::bitwise_or(mask_red1, mask_red2, mask_red1);
-    mask_red = mask_red1;
-
-    // Count pixels for each color
-    int total_pixels = frame.cols * frame.rows;
-    int green_pixels = cv::countNonZero(mask_green);
-    int red_pixels = cv::countNonZero(mask_red);
-    int blue_pixels = cv::countNonZero(mask_blue);
+    // Count the number of non-zero pixels in each mask
+    int totalPixels = image.rows * image.cols;
+    int redPixels = countNonZero(red_mask);
+    int greenPixels = countNonZero(green_mask);
+    int bluePixels = countNonZero(blue_mask);
 
     // Calculate percentages
-    float green_percentage = (static_cast<float>(green_pixels) / total_pixels) * 100.0;
-    float red_percentage = (static_cast<float>(red_pixels) / total_pixels) * 100.0;
-    float blue_percentage = (static_cast<float>(blue_pixels) / total_pixels) * 100.0;
+    double redPercentage = (double)redPixels / totalPixels * 100.0;
+    double greenPercentage = (double)greenPixels / totalPixels * 100.0;
+    double bluePercentage = (double)bluePixels / totalPixels * 100.0;
 
-    // Print percentages
-    std::cout << "Green pixels percentage: " << green_percentage << "%" << std::endl;
-    std::cout << "Red pixels percentage: " << red_percentage << "%" << std::endl;
-    std::cout << "Blue pixels percentage: " << blue_percentage << "%" << std::endl;
+    // Print the percentages
+    cout << "Red Percentage: " << redPercentage << "%" << endl;
+    cout << "Green Percentage: " << greenPercentage << "%" << endl;
+    cout << "Blue Percentage: " << bluePercentage << "%" << endl;
 
     return 0;
 }
 
 int main() {
 
-    system("capute_image.sh");
+    system("./capture_image.sh");
     std::string filename = "image.jpg";
 
     // Process the captured image
