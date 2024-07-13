@@ -8,4 +8,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Image captured successfully: captured_image.jpg"
-
