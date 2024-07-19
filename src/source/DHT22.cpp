@@ -2,22 +2,22 @@
 #include <time.h>
 
 #define MAX_TIMINGS 85                  // Takes 84 state changes to transmit data
-//------------------------------------------------------------------------------------
+
 static int durn(struct timespec t1, struct timespec t2) {
 	return(((t2.tv_sec-t1.tv_sec)*1000000) + ((t2.tv_nsec-t1.tv_nsec)/1000));	// elapsed microsecs
 }
-//------------------------------------------------------------------------------------
+
 TDHT22::TDHT22(int PinNo, bool Fahrenheit)
 {
     wPin=PinNo;
     Fh  =Fahrenheit;
 }
-//------------------------------------------------------------------------------------
+
 TDHT22::~TDHT22()
 {
     //dtor
 }
-//------------------------------------------------------------------------------------
+
 bool TDHT22::Init(void)
 {
     Init_ok = ( wiringPiSetup() >= 0 );
@@ -26,7 +26,7 @@ bool TDHT22::Init(void)
 
     return Init_ok;
 }
-//------------------------------------------------------------------------------------
+
 void TDHT22::StartPuls(void)
 {
     // Signal Sensor we're ready to read by pulling pin UP for 10 mS.
@@ -40,7 +40,7 @@ void TDHT22::StartPuls(void)
     delayMicroseconds(40);
     pinMode( wPin, INPUT );
 }
-//------------------------------------------------------------------------------------
+
 void TDHT22::Fetch(void)
 {
     if(!Init_ok) return;
@@ -92,4 +92,4 @@ void TDHT22::Fetch(void)
         Temp = 0.0;
     }
 }
-//------------------------------------------------------------------------------------
+
