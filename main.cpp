@@ -14,13 +14,17 @@ int main(int argc, char *argv[]) {
     MainWindow app;
     app.showFullScreen();
 
-    TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
-    Sensor->Init(); // Initialize the DHT22 sensor
 
-    ImageProcessing imgProcessor; // Create an instance of ImageProcessing
+    QTimer timer;
+    QObject::connect(&timer,&QTimer::timeout,[&window]()
+    {
 
-    bool processImage = true; // Boolean to determine when to process image
+        TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
+        Sensor->Init(); // Initialize the DHT22 sensor
 
+        ImageProcessing imgProcessor; // Create an instance of ImageProcessing
+
+        bool processImage = true; // Boolean to determine when to process image
 
         if (processImage) {
             system("./src/script/capture_image.sh"); // Capture an image
@@ -47,10 +51,11 @@ int main(int argc, char *argv[]) {
         app.setTemperature(QString::fromStdString(to_string(temp)));
         app.setHumidity(QString::fromStdString(to_string(hum)));
 
-        //delay(10000); // Delay for 10 seconds
-    
+        delete Sensor; // Clean up allocated memory for DHT22 sensor
 
-    delete Sensor; // Clean up allocated memory for DHT22 sensor
 
+    });
+    timer.start(10000);
+   
     return a.exec(); // Execute the Qt application event loop
 }
