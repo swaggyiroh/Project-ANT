@@ -51,18 +51,6 @@ else
     echo "OpenCV is already installed."
 fi
 
-# Check if LCD-show is installed
-if [ ! -d "LCD-show" ]; then
-    echo "LCD-show is not installed. Installing..."
-    git clone https://github.com/waveshare/LCD-show.git
-    cd LCD-show/
-    chmod +x LCD35-show
-    echo "LCD-show set up successfully."
-    cd ..
-else
-    echo "LCD-show is already installed."
-fi
-
 # Check if Qt is installed
 if ! is_package_installed qtbase5-dev; then
     echo "Qt is not installed. Installing..."
@@ -75,6 +63,18 @@ if ! is_package_installed qtbase5-dev; then
     echo "Qt installed successfully."
 else
     echo "Qt is already installed."
+fi
+
+# Check if LCD-show is installed
+if [ ! -d "LCD-show" ]; then
+    echo "LCD-show is not installed. Installing..."
+    git clone https://github.com/waveshare/LCD-show.git
+    cd LCD-show/
+    chmod +x LCD35-show
+    echo "LCD-show set up successfully."
+    cd
+else
+    echo "LCD-show is already installed."
 fi
 
 echo "Installation check completed."
