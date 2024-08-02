@@ -6,6 +6,7 @@ is_package_installed() {
 }
 
 # General update and upgrade
+cd
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Check if Git is installed
@@ -24,8 +25,10 @@ fi
 # Check if WiringPi is installed
 if ! is_package_installed wiringpi; then
     echo "WiringPi is not installed. Installing..."
-    sudo apt-get update
-    sudo apt-get install -y wiringpi
+    git clone https://github.com/wiringpi/wiringpi
+    cd wiringPi
+    ./build
+    cd
     if [ $? -ne 0 ]; then
         echo "Failed to install WiringPi. Exiting."
         exit 1
@@ -38,7 +41,6 @@ fi
 # Check if OpenCV is installed
 if ! is_package_installed libopencv-dev; then
     echo "OpenCV is not installed. Installing..."
-    sudo apt-get update
     sudo apt-get install -y libopencv-dev
     if [ $? -ne 0 ]; then
         echo "Failed to install OpenCV. Exiting."
