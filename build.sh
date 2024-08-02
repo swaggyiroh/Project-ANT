@@ -83,7 +83,7 @@ echo "Installation check completed."
 mkdir build
 qmake ..
 make
-cd ..
+cd 
 
 # Reboot on 3.5inch Gpio Display
 ./LCD-show/LCD35-show
