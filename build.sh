@@ -26,7 +26,7 @@ fi
 if ! is_package_installed wiringpi; then
     echo "WiringPi is not installed. Installing..."
     git clone https://github.com/wiringpi/wiringpi
-    cd wiringPi
+    cd wiringpi
     ./build
     cd
     if [ $? -ne 0 ]; then
