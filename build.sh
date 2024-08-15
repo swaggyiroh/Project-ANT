@@ -86,4 +86,5 @@ make
 cd 
 
 # Reboot on 3.5inch Gpio Display
- ./LCD-show/LCD35-show
+cd LCD-show
+ ./LCD35-show
