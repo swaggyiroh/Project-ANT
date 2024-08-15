@@ -3,6 +3,7 @@
 #include "src/source/ImageProcessing.h"
 #include "src/source/DHT22.h"
 #include <iostream>
+#include <QTimer>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]) {
 
 
     QTimer timer;
-    QObject::connect(&timer,&QTimer::timeout,[&window]()
+    QObject::connect(&timer,&QTimer::timeout,[&app]()
     {
 
         TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
