@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the output file path
-output_file="assets/image.jpg"
+output_file="../../assets/image.jpg"
 
 # Capture image with libcamera-still, suppressing output
 libcamera-still -n -o "$output_file"  >/dev/null 2>&1
