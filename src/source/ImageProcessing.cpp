@@ -1,4 +1,5 @@
 #include "ImageProcessing.h"
+#include <string>
 
 using namespace cv;
 using namespace std;
@@ -11,7 +12,7 @@ ImageProcessing::~ImageProcessing() {
     // Destructor implementation if needed
 }
 
-string ImageProcessing::processCapturedImage(const std::string& filename) {
+std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     Mat image = imread(filename);
 
     if (image.empty()) {
