@@ -10,7 +10,7 @@ public:
     ~ImageProcessing(); // Destructor
 
     // Function to process captured image
-    int processCapturedImage(const std::string& filename);
+    string processCapturedImage(const std::string& filename);
 
 private:
     // Private member variables or methods can be added if needed
