@@ -31,8 +31,8 @@ int main(int argc, char *argv[]) {
             system("./src/script/capture_image.sh"); // Capture an image
             string image = "assets/image.jpg"; // Image file path
             app.setImage(QString::fromStdString(image)); //Displays new Image
-            int fillLevel = imgProcessor.processCapturedImage(image); // Process the captured image
-            app.setPercentage(QString::fromStdString(to_string(fillLevel))); // Update GUI with processed image result
+            string fillLevel = imgProcessor.processCapturedImage(image); // Process the captured image
+            app.setFood(QString::fromStdString(fillLevel)); // Update GUI with processed image result
         }
         processImage = !processImage; // Toggle processImage flag
 
