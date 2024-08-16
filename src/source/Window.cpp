@@ -60,7 +60,7 @@ void MainWindow::setHumidity(const QString &humidity) {
 }
 
 void MainWindow::setImage(const QString &imagePath) {
-    QPixmap originalPixmap("assets/image.jpg");
+    QPixmap originalPixmap(imagePath);
     QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
     imageLabel->setPixmap(scaledPixmap);
 }
