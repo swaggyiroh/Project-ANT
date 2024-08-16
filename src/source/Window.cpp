@@ -47,7 +47,7 @@ MainWindow::~MainWindow() {
     // Destructor implementation
 }
 
-void MainWindow::setPercentage(const QString &percentage) {
+void MainWindow::setFood(const QString &percentage) {
     percentageLabel->setText(percentage);
 }
 
