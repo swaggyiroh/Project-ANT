@@ -17,7 +17,7 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
 
     if (image.empty()) {
         cout << "Could not open or find the image" << endl;
-        return -1;
+        return "";
     }
 
     // Define the range of each color in RGB
