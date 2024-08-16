@@ -13,7 +13,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void setPercentage(const QString &percentage);
+    void setFood(const QString &percentage);
     void setTemperature(const QString &temperature);
     void setHumidity(const QString &humidity);
     void setImage(const QString &imagePath);
