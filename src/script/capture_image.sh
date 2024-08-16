@@ -3,7 +3,7 @@
 # Set the output file path
 output_file="assets/image.jpg"
 
-# Capture image with rpicam-still, suppressing output
+# Capture image with libcamera-still, suppressing output
 libcamera-still -o -n --output "$output_file"  >/dev/null 2>&1
 
 # Check if the image was captured successfully
