@@ -79,12 +79,13 @@ fi
 
 echo "Installation check completed."
 
-
+cd Project-ANT-main
 mkdir build
+cd build
 qmake ..
 make
 cd 
 
 # Reboot on 3.5inch Gpio Display
 cd LCD-show
- ./LCD35-show
+./LCD35-show
