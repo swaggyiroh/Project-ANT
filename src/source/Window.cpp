@@ -59,6 +59,12 @@ void MainWindow::setHumidity(const QString &humidity) {
     humidityLabel->setText("Feuchtigkeits: " + humidity + "%");
 }
 
+void MainWindow::setImage(const QString &imagePath) {
+    QPixmap originalPixmap("assets/image.jpg");
+    QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
+    imageLabel->setPixmap(scaledPixmap);
+}
+
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
         qDebug() << "Esc key pressed. Closing application.";
