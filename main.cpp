@@ -4,6 +4,7 @@
 #include "src/source/DHT22.h"
 #include <iostream>
 #include <QTimer>
+#include <string>
 
 using namespace std;
 
