@@ -4,7 +4,7 @@
 output_file="assets/image.jpg"
 
 # Capture image with libcamera-still, suppressing output
-libcamera-still -n --output "$output_file"  >/dev/null 2>&1
+libcamera-still -n -o "$output_file"  >/dev/null 2>&1
 
 # Check if the image was captured successfully
 if [ $? -ne 0 ]; then
