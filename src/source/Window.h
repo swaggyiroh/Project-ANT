@@ -16,6 +16,7 @@ public slots:
     void setPercentage(const QString &percentage);
     void setTemperature(const QString &temperature);
     void setHumidity(const QString &humidity);
+    void setImage(const QString &imagePath);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override; // Override key press event
