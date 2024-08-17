@@ -21,15 +21,24 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     }
 
     // Define the range of each color in RGB
-    Scalar red_lower(255, 0, 0);
-    Scalar red_upper(255, 100, 100);
+    //Scalar red_lower(255, 0, 0);
+    //Scalar red_upper(255, 100, 100);
 
-    Scalar green_lower(153, 255, 0);
-    Scalar green_upper(0, 255, 145);
+    //Scalar green_lower(153, 255, 0);
+    //Scalar green_upper(0, 255, 145);
 
-    Scalar blue_lower(0, 166, 255);
-    Scalar blue_upper(38, 0, 255);
+    //Scalar blue_lower(0, 166, 255);
+    //Scalar blue_upper(38, 0, 255);
 
+    Scalar red_lower(100, 0, 100); //In Scalar BGR = BLUE ; RED ; GREEN
+    Scalar red_upper(100, 100, 255);
+
+    Scalar green_lower(0, 100, 0);
+    Scalar green_upper(100, 255, 100);
+
+    Scalar blue_lower(100, 0, 0);
+    Scalar blue_upper(255, 100, 100);
+    
     // Create masks for each color in RGB
     Mat red_mask, green_mask, blue_mask;
     inRange(image, red_lower, red_upper, red_mask);
