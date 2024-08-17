@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       imageLabel(new QLabel(this)),
-      percentageLabel(new QLabel("Futter: 0%", this)),
+      percentageLabel(new QLabel("Futter: ...", this)),
       temperatureLabel(new QLabel("Temperatur: 0°C", this)),
       humidityLabel(new QLabel("Feuchtigkeits: 0%", this)) {
     
