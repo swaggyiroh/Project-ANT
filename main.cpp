@@ -22,6 +22,9 @@ int main(int argc, char *argv[]) {
     {
 
         TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
+        //to change to fahrenheit do this:
+        //TDHT22 *Sensor = new TDHT22(DHT_PIN, true);
+        
         Sensor->Init(); // Initialize the DHT22 sensor
 
         ImageProcessing imgProcessor; // Create an instance of ImageProcessing
