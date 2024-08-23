@@ -48,7 +48,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setPercentage(const QString &percentage) {
-    percentageLabel->setText(percentage);
+    percentageLabel->setText("Futterstand: " + percentage);
 }
 
 void MainWindow::setTemperature(const QString &temperature) {
@@ -57,6 +57,12 @@ void MainWindow::setTemperature(const QString &temperature) {
 
 void MainWindow::setHumidity(const QString &humidity) {
     humidityLabel->setText("Feuchtigkeits: " + humidity + "%");
+}
+
+void MainWindow::setImage(const QString &imagePath) {
+    QPixmap originalPixmap(imagePath);
+    QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
+    imageLabel->setPixmap(scaledPixmap);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
