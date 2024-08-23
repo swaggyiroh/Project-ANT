@@ -11,7 +11,7 @@ unix: PKGCONFIG += opencv4
 INCLUDEPATH += /usr/include/opencv4
 
 # Library paths for Qt and OpenCV (replace with actual paths)
-LIBS += -L$$PWD/../path/to/opencv/libraries -lopencv_core -lopencv_imgproc -lopencv_highgui
+LIBS += -L/usr/lib -lopencv_core -lopencv_imgproc -lopencv_highgui
 LIBS += -L$$[QT_INSTALL_PREFIX]/lib -lQt5Widgets -lQt5Gui -lQt5Core
 
 # Additional libraries
