@@ -20,21 +20,35 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
         return "";
     }
 
-    Scalar red_lower(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
-    Scalar red_upper(70, 60, 255);
+    Scalar red_lower1(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
+    Scalar red_upper1(90, 90, 255);
 
-    Scalar green_lower(0, 100, 0);
-    Scalar green_upper(80, 255, 80);
+    Scalar green_lower1(0, 100, 0);
+    Scalar green_upper1(90, 255, 90);
 
-    Scalar blue_lower(120, 0, 0);
-    Scalar blue_upper(255, 80, 80);
+    Scalar green_lower2(0, 180, 0);
+    Scalar green_upper2(160, 255, 120);
 
+    Scalar blue_lower1(100, 0, 0);
+    Scalar blue_upper1(255, 90, 90);
+
+    Scalar blue_lower2(180, 100, 0);
+    Scalar blue_upper2(255, 160, 70);
+    
     // Create masks for each color in RGB
-    Mat red_mask, green_mask, blue_mask;
-    inRange(image, red_lower, red_upper, red_mask);
-    inRange(image, green_lower, green_upper, green_mask);
-    inRange(image, blue_lower, blue_upper, blue_mask);
+    Mat red_mask1, red_mask2, green_mask1, green_mask2, blue_mask1, blue_mask2;
+    inRange(image, red_lower1, red_upper1, red_mask1);
+    inRange(image, red_lower2, red_upper2, red_mask2);
+    inRange(image, green_lower1, green_upper1, green_mask1);
+    inRange(image, green_lower2, green_upper2, green_mask2);
+    inRange(image, blue_lower1, blue_upper1, blue_mask1);
+    inRange(image, blue_lower2, blue_upper2, blue_mask2);
 
+    // Combine masks if there are multiple ranges
+    Mat red_mask = red_mask1 | red_mask2;
+    Mat green_mask = green_mask1 | green_mask2;
+    Mat blue_mask = blue_mask1 | blue_mask2;
+    
     // Count the number of non-zero pixels in each mask
     int totalPixels = image.rows * image.cols;
     int redPixels = countNonZero(red_mask);
@@ -57,7 +71,7 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     string fuellmenge = "Kein Futter zu erkennen";
 
     // Further processing based on RGB percentages
-    if (greenPercentage > 10 || bluePercentage > 10 || redPercentage > 10) {
+    if (greenPercentage > 1 || bluePercentage > 1 || redPercentage > 1) {
         if (greenPercentage > bluePercentage && greenPercentage > redPercentage) {
         fuellmenge = "70% - 100%";
         } else if (bluePercentage > greenPercentage && bluePercentage > redPercentage) {
