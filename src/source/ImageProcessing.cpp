@@ -21,13 +21,13 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     }
 
     Scalar red_lower(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
-    Scalar red_upper(150, 150, 255);
+    Scalar red_upper(70, 60, 255);
 
     Scalar green_lower(0, 50, 0);
-    Scalar green_upper(180, 255, 200);
+    Scalar green_upper(100, 255, 200);
 
     Scalar blue_lower(50, 0, 0);
-    Scalar blue_upper(255, 200, 200);
+    Scalar blue_upper(255, 150, 50);
 
     // Create masks for each color in RGB
     Mat red_mask, green_mask, blue_mask;
@@ -57,11 +57,11 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     string fuellmenge = "Kein Futter zu erkennen";
 
     // TODO: Further processing based on RGB percentages
-    if (greenPercentage > 10.0) {
+    if (greenPercentage > bluePercentage && greenPercentage > redPercentage) {
     fuellmenge = "70% - 100%";
-    } else if (bluePercentage > 10.0) {
+    } else if (bluePercentage > greenPercentage && bluePercentage > redPercentage) {
     fuellmenge = "40% - 70%";
-    } else if (redPercentage > 10.0) {
+    } else if (redPercentage > greenPercentage && redPercentage > bluePercentage) {
     fuellmenge = "10% - 40%";
     }
     
