@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
       imageLabel(new QLabel(this)),
       percentageLabel(new QLabel("Futterstand: 0%", this)),
       temperatureLabel(new QLabel("Temperatur: 0°C", this)),
-      humidityLabel(new QLabel("Feuchtigkeits: 0%", this)) {
+      humidityLabel(new QLabel("Feuchtigkeit: 0%", this)) {
     
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
