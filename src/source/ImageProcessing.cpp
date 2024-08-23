@@ -23,11 +23,11 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     Scalar red_lower(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
     Scalar red_upper(70, 60, 255);
 
-    Scalar green_lower(0, 50, 0);
-    Scalar green_upper(120, 255, 120);
+    Scalar green_lower(0, 100, 0);
+    Scalar green_upper(80, 255, 80);
 
-    Scalar blue_lower(50, 0, 0);
-    Scalar blue_upper(255, 150, 50);
+    Scalar blue_lower(120, 0, 0);
+    Scalar blue_upper(255, 80, 80);
 
     // Create masks for each color in RGB
     Mat red_mask, green_mask, blue_mask;
