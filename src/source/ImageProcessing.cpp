@@ -19,17 +19,16 @@ int ImageProcessing::processCapturedImage(const std::string& filename) {
         return -1;
     }
 
-    // Define the range of each color in RGB
-    Scalar red_lower(255, 0, 0);
-    Scalar red_upper(255, 100, 100);
+    Scalar red_lower(100, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
+    Scalar red_upper(100, 100, 255);
 
-    Scalar green_lower(153, 255, 0);
-    Scalar green_upper(0, 255, 145);
+    Scalar green_lower(0, 100, 0);
+    Scalar green_upper(100, 255, 100);
 
-    Scalar blue_lower(0, 166, 255);
-    Scalar blue_upper(38, 0, 255);
+    Scalar blue_lower(100, 0, 0);
+    Scalar blue_upper(255, 100, 100);
 
-    // Create masks for each color in RGB
+    // Create masks for each color in BGR
     Mat red_mask, green_mask, blue_mask;
     inRange(image, red_lower, red_upper, red_mask);
     inRange(image, green_lower, green_upper, green_mask);
@@ -53,7 +52,14 @@ int ImageProcessing::processCapturedImage(const std::string& filename) {
 
     int value = 0;
 
-    // TODO: Further processing based on RGB percentages
+    // TODO: Further processing based on BGR percentages
+    if (greenPercentage > 10.0) {
+    value = 1;
+    } else if (bluePercentage > 10.0) {
+    value = 2;
+    } else if (redPercentage > 10.0) {
+    value = 3;
+    }
 
     return value;
 }
