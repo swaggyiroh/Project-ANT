@@ -3,6 +3,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <string>
 
 class ImageProcessing {
 public:
@@ -10,7 +11,7 @@ public:
     ~ImageProcessing(); // Destructor
 
     // Function to process captured image
-    int processCapturedImage(const std::string& filename);
+    std::string processCapturedImage(const std::string& filename);
 
 private:
     // Private member variables or methods can be added if needed
