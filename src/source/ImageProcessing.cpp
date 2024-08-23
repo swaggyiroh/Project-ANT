@@ -36,16 +36,14 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     Scalar blue_upper2(255, 160, 70);
     
     // Create masks for each color in RGB
-    Mat red_mask1, red_mask2, green_mask1, green_mask2, blue_mask1, blue_mask2;
-    inRange(image, red_lower1, red_upper1, red_mask1);
-    inRange(image, red_lower2, red_upper2, red_mask2);
+    Mat red_mask, green_mask1, green_mask2, blue_mask1, blue_mask2;
+    inRange(image, red_lower1, red_upper1, red_mask);
     inRange(image, green_lower1, green_upper1, green_mask1);
     inRange(image, green_lower2, green_upper2, green_mask2);
     inRange(image, blue_lower1, blue_upper1, blue_mask1);
     inRange(image, blue_lower2, blue_upper2, blue_mask2);
 
     // Combine masks if there are multiple ranges
-    Mat red_mask = red_mask1 | red_mask2;
     Mat green_mask = green_mask1 | green_mask2;
     Mat blue_mask = blue_mask1 | blue_mask2;
     
