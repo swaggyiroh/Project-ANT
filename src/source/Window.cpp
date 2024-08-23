@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap originalPixmap("assets/image.jpg");
     
     // Scale the image to 100x100 pixels
-    QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
+    QPixmap scaledPixmap = originalPixmap.scaled(480, 600, Qt::KeepAspectRatio);
 
     // Set up the image label with the scaled pixmap
     imageLabel->setPixmap(scaledPixmap);
@@ -61,7 +61,7 @@ void MainWindow::setHumidity(const QString &humidity) {
 
 void MainWindow::setImage(const QString &imagePath) {
     QPixmap originalPixmap(imagePath);
-    QPixmap scaledPixmap = originalPixmap.scaled(250, 300, Qt::KeepAspectRatio);
+    QPixmap scaledPixmap = originalPixmap.scaled(480, 600, Qt::KeepAspectRatio);
     imageLabel->setPixmap(scaledPixmap);
 }
 
