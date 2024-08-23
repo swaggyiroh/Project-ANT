@@ -20,14 +20,14 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
         return "";
     }
 
-    Scalar red_lower(100, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
-    Scalar red_upper(100, 100, 255);
+    Scalar red_lower(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
+    Scalar red_upper(150, 150, 255);
 
-    Scalar green_lower(0, 100, 0);
-    Scalar green_upper(100, 255, 100);
+    Scalar green_lower(0, 50, 0);
+    Scalar green_upper(180, 255, 200);
 
-    Scalar blue_lower(100, 0, 0);
-    Scalar blue_upper(255, 100, 100);
+    Scalar blue_lower(50, 0, 0);
+    Scalar blue_upper(255, 200, 200);
     
     // Create masks for each color in BGR
     Mat red_mask, green_mask, blue_mask;
@@ -41,6 +41,9 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     int greenPixels = countNonZero(green_mask);
     int bluePixels = countNonZero(blue_mask);
 
+    //param to tune
+    //int totalPixels = totalPixels / 10;
+    
     // Calculate percentages
     double redPercentage = (double)redPixels / totalPixels * 100.0;
     double greenPercentage = (double)greenPixels / totalPixels * 100.0;
