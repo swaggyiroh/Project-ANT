@@ -12,7 +12,7 @@ ImageProcessing::~ImageProcessing() {
     // Destructor implementation if needed
 }
 
-int ImageProcessing::processCapturedImage(const std::string& filename) {
+std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     Mat image = imread(filename);
 
     if (image.empty()) {
