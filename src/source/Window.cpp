@@ -48,7 +48,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setFood(const QString &percentage) {
-    percentageLabel->setText("Futter: " + percentage);
+    percentageLabel->setText("Futterstand: " + percentage);
 }
 
 void MainWindow::setTemperature(const QString &temperature) {
