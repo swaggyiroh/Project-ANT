@@ -1,4 +1,5 @@
 #include "ImageProcessing.h"
+#include <string>
 
 using namespace cv;
 using namespace std;
@@ -16,7 +17,7 @@ int ImageProcessing::processCapturedImage(const std::string& filename) {
 
     if (image.empty()) {
         cout << "Could not open or find the image" << endl;
-        return -1;
+        return "";
     }
 
     Scalar red_lower(100, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
@@ -49,17 +50,17 @@ int ImageProcessing::processCapturedImage(const std::string& filename) {
     cout << "Red Percentage: " << redPercentage << "%" << endl;
     cout << "Green Percentage: " << greenPercentage << "%" << endl;
     cout << "Blue Percentage: " << bluePercentage << "%" << endl;
-
-    int value = 0;
+    
+    string fuellmenge = "Kein Futter zu erkennen";
 
     // TODO: Further processing based on BGR percentages
     if (greenPercentage > 10.0) {
-    value = 1;
+    fuellmenge = "70% - 100%";
     } else if (bluePercentage > 10.0) {
-    value = 2;
+    fuellmenge = "40% - 70%";
     } else if (redPercentage > 10.0) {
-    value = 3;
+    fuellmenge = "10% - 40%";
     }
-
-    return value;
+    
+    return fuellmenge;
 }
