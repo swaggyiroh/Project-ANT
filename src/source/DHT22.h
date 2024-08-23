@@ -19,21 +19,19 @@ struct TSenData
 class TDHT22:public TSenData
 {
 public:
-    bool Init(void);
-    void Fetch(void);			//It takes 32.5 mSec to fetch a new reading
-
-    TDHT22(int PinNo, bool Fahrenheit=false);
+    TDHT22(int pinNumber, bool fahrenheit = false);
     virtual ~TDHT22();
 
-protected:
+    bool Init();
+    void Fetch();
 
 private:
-    bool Fh;
+    bool fh;
     bool Init_ok;
     int  wPin;
     int  data[5];
 
-    void StartPuls(void);
+    void StartSignal();
 };
 
 #endif // TDHT22_H
