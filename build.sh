@@ -70,6 +70,7 @@ echo "Installation check completed."
 
 cd Project-ANT*
 mkdir build
+cd build
 qmake ..
 make
 cd ..
