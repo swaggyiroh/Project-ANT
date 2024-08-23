@@ -20,7 +20,7 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
         return "";
     }
 
-    Scalar red_lower(000, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
+    Scalar red_lower(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
     Scalar red_upper(150, 150, 255);
 
     Scalar green_lower(0, 50, 0);
