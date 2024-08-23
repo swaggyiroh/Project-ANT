@@ -3,6 +3,8 @@
 #include "src/source/ImageProcessing.h"
 #include "src/source/DHT22.h"
 #include <iostream>
+#include <QTimer>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +18,7 @@ int main(int argc, char *argv[]) {
 
 
     QTimer timer;
-    QObject::connect(&timer,&QTimer::timeout,[&window]()
+    QObject::connect(&timer,&QTimer::timeout,[&app]()
     {
 
         TDHT22 *Sensor = new TDHT22(DHT_PIN); // Initialize the DHT22 sensor
@@ -29,6 +31,7 @@ int main(int argc, char *argv[]) {
         if (processImage) {
             system("./src/script/capture_image.sh"); // Capture an image
             string image = "assets/image.jpg"; // Image file path
+            app.setImage(QString::fromStdString(image)); //Displays new Image
             int fillLevel = imgProcessor.processCapturedImage(image); // Process the captured image
             app.setPercentage(QString::fromStdString(to_string(fillLevel))); // Update GUI with processed image result
         }
