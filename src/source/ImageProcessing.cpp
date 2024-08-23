@@ -55,11 +55,11 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
 
     // TODO: Further processing based on BGR percentages
     if (greenPercentage > 10.0) {
-    fuellmenge = "voll";
+    fuellmenge = "70% - 100%";
     } else if (bluePercentage > 10.0) {
-    fuellmenge = "mittel";
+    fuellmenge = "40% - 70%";
     } else if (redPercentage > 10.0) {
-    fuellmenge = "fast leer";
+    fuellmenge = "10% - 40%";
     }
     
     return fuellmenge;
