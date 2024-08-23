@@ -3,6 +3,9 @@
 
 Ant Terrarium Observer..
 
+Main for 64Bit Bullseye Pi OS
+Branch for 64Bit Bookworm Pi OS
+
 
 
 ## By
