@@ -74,12 +74,14 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     string fuellmenge = "Kein Futter zu erkennen";
 
     // Further processing based on RGB percentages
-    if (greenPercentage > bluePercentage && greenPercentage > redPercentage) {
-    fuellmenge = "70% - 100%";
-    } else if (bluePercentage > greenPercentage && bluePercentage > redPercentage) {
-    fuellmenge = "40% - 70%";
-    } else if (redPercentage > greenPercentage && redPercentage > bluePercentage) {
-    fuellmenge = "10% - 40%";
+    if (greenPercentage > 1 || bluePercentage > 1 || redPercentage > 1) {
+        if (greenPercentage > bluePercentage && greenPercentage > redPercentage) {
+        fuellmenge = "70% - 100%";
+        } else if (bluePercentage > greenPercentage && bluePercentage > redPercentage) {
+        fuellmenge = "40% - 70%";
+        } else if (redPercentage > greenPercentage && redPercentage > bluePercentage) {
+        fuellmenge = "10% - 40%";
+        }
     }
     
     return fuellmenge;
