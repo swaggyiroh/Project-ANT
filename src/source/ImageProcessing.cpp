@@ -56,9 +56,6 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
     int redPixels = countNonZero(red_mask);
     int greenPixels = countNonZero(green_mask);
     int bluePixels = countNonZero(blue_mask);
-
-    //param to tune
-    //int totalPixels = totalPixels / 10;
     
     // Calculate percentages
     double redPercentage = (double)redPixels / totalPixels * 100.0;
