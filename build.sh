@@ -65,20 +65,6 @@ else
     echo "Qt is already installed."
 fi
 
-# Not working with the camera modul 
-#    # Check if LCD-show is installed 
-#    if [ ! -d "LCD-show" ]; then
-#        echo "LCD-show is not installed. Installing..."
-#        git clone https://github.com/waveshare/LCD-show.git
-#        cd LCD-show/
-#        chmod +x LCD35-show
-#        echo "LCD-show set up successfully."
-#        cd
-#    else
-#        echo "LCD-show is already installed."
-#    fi
-
-
 echo "Installation check completed."
 
 cd Project-ANT*
@@ -87,7 +73,3 @@ cd build
 qmake ..
 make
 cd 
-
-#    # Reboot on 3.5inch Gpio Display
-#    cd LCD-show
-#    ./LCD35-show
