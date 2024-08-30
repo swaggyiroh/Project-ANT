@@ -83,7 +83,8 @@ void TDHT22::Fetch() {
         Temp = (float)((data[2] << 8) + data[3]) / 10.0;
         if(data[2] & 0x80)  Temp *= -1;         // Check for negative temperature
         if(fh) {				// Convert to Fahrenheit
-	Temp *= 1.8; Temp += 32.0; 
+	Temp *= 1.8; 
+	Temp += 32.0; 
 	}
     }
     else {                                      // Bad read
