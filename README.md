@@ -24,6 +24,7 @@ Benötigt:
     -	Raspberry Pi Imager 
 
 Vorbereitung:
+
 Falls die microSD-Karte schon ein Image aufgespielt hat, gehe zu Schritt 6
   1.	Schließe die microSD-Karte am Kartenanschluss des Computers an
   2.	Starte den Raspberry Pi Imager
