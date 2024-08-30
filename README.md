@@ -22,6 +22,7 @@ Benötigt:
   -	microSD-Karte (16/32 GB) ohne Image
     -	Computer mit microSD-Kartenanschluss
     -	Raspberry Pi Imager 
+
 Vorbereitung:
 Falls die microSD-Karte schon ein Image aufgespielt hat, gehe zu Schritt 6
   1.	Schließe die microSD-Karte am Kartenanschluss des Computers an
@@ -43,6 +44,7 @@ Falls die microSD-Karte schon ein Image aufgespielt hat, gehe zu Schritt 6
   15.	Um alle benötigten Bibliotheken und Updates zu installieren, sowie die Ausführbare Datei zu kompilieren, führe nun die build-Datei aus mit „./build.sh“ (dies kann einige Minuten dauern)
   16.	Starte nun das Programm mit „./ProjectANT“
   17.	Mit der Escape-Taste kann das Programm wieder geschlossen werden
+
 Zu beachten:
   -	Da die Bildverarbeitung den Futterstand anhand der Farben grün, blau und rot bestimmt, darf, für eine korrekte Ermittlung des Futterstands, der Untergrund keine dieser Farben haben. Zu Empfehlen ist ein weißer oder schwarzer Untergrund.
   -	Wenn die Temperatur in Fahrenheit, anstatt in Celsius, angezeigt werden soll, dann muss vor dem Kompilieren (Schritt 15) in der main.cpp Datei die Zeile 24 abgeändert werden, wie dort angegeben.
