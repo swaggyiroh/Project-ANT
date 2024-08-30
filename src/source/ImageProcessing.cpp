@@ -19,7 +19,10 @@ std::string ImageProcessing::processCapturedImage(const std::string& filename) {
         cout << "Could not open or find the image" << endl;
         return "";
     }
-
+    
+    //if you change values, then never make it so that all three values can have the same number 
+    //e.g. if all ranges include 95, than (95,95,95) would lead to the counting of grey pixels.
+    
     Scalar red_lower1(0, 0, 100); //Scalar is BGR = BLUE ; RED ; GREEN
     Scalar red_upper1(90, 90, 255);
 
