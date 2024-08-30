@@ -32,7 +32,8 @@ Falls die microSD-Karte schon ein Image aufgespielt hat, gehe zu Schritt 6
   5.	Wähle die microSD-Karte aus und erzeuge/schreibe das Image
   6.	Schiebe die microSD-Karte in den dafür vorgesehenen Slot im Pi ein
   7.	Schließe nun den DHT22 Sensor, wie im Foto dargestellt, an (Kabelfarben dienen als Orientierung) ![image](https://github.com/user-attachments/assets/5d4c7e4e-d712-40e5-be6f-fbfed1ec1f9f) ![image](https://github.com/user-attachments/assets/642d7ecc-1b93-45a0-a1ae-dd29a67b7ff3)									
-  8.	Schließe nun die Kamera, wie im Foto gezeigt, an (die offenen Stellen des Kabels sollten dabei in die Richtung der Pins zeigen) 
+  8.	Schließe nun die Kamera, wie im Foto gezeigt, an (die offenen Stellen des Kabels sollten dabei in die Richtung der Pins zeigen) ![image](https://github.com/user-attachments/assets/b988497c-9682-49c6-a191-0905c294dac1)
+
   9.	Schließe nun noch die restlichen Kabel an (Power-Kabel, HDMI, Tastatur und Maus)
   10.	Starte nun den Pi
   11.	Stelle nun eine Verbindung mit dem Internet her (Ethernet oder W-Lan)
