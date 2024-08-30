@@ -70,7 +70,7 @@ void TDHT22::Fetch() {
         if ((toggleCount > 2) && (toggleCount % 2 == 0)) {
             data[bitCount / 8] <<= 1;  // Shift left to make space for the new bit
             if (duration > 35) {
-                data[bitCount / 8] |= 1;  // Set the bit if duration indicates a '1'
+                data[bitCount / 8] |= 1;  // Set the bit if duration indicates a '1', else 0
             }
             bitCount++;
         }
