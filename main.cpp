@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
     MainWindow app;
     app.showFullScreen();
 
-
+    bool processImage = true; // Boolean to determine when to process image
+    
     QTimer timer;
     QObject::connect(&timer,&QTimer::timeout,[&app]()
     {
@@ -29,7 +30,6 @@ int main(int argc, char *argv[]) {
 
         ImageProcessing imgProcessor; // Create an instance of ImageProcessing
 
-        bool processImage = true; // Boolean to determine when to process image
 
         if (processImage) {
             system("./src/script/capture_image.sh"); // Capture an image
